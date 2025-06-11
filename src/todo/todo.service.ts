@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Todo, TodoDocument } from '../schema/todo.schema';
-import { NotFoundException } from '@nestjs/common';
+import { NotFoundException, BadRequestException } from '@nestjs/common';
 import { CreateTodoDto } from './dto/CreateTodo.dto';
 import { UpdateTodoDto } from './dto/UpdateTodo.dto';
 
@@ -10,7 +10,11 @@ import { UpdateTodoDto } from './dto/UpdateTodo.dto';
 export class TodoService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<TodoDocument>) {}
   async create(data: CreateTodoDto): Promise<Todo> {
-    return new this.todoModel(data).save();
+    const todoData = {
+      ...data,
+      status: 'To-do', // nếu không có status thì dùng "To-do"
+    };
+    return new this.todoModel(todoData).save();
   }
   async findAll(): Promise<Todo[]> {
     return this.todoModel.find().exec();
