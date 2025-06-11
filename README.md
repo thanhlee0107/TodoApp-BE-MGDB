@@ -31,6 +31,11 @@
 $ npm install
 ```
 
+## Create file .env in your project with this information
+
+PORT=3000
+MONGODB_URI=mongodb+srv://todoapp:todoapp@cluster0.rv4lrrw.mongodb.net/?retryWrites=true&w=majorityappName=Cluster0
+
 ## Compile and run the project
 
 ```bash
