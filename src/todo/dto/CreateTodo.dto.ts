@@ -16,7 +16,7 @@ export class CreateTodoDto {
   content?: string;
 
   @IsOptional()
-  @IsIn(['To-do', 'In Process', 'Done'])
+  @IsIn(['To-do', 'In Progress', 'Done'])
   status?: string;
   @IsOptional()
   @IsDateString()
